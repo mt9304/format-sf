@@ -1,6 +1,5 @@
 trimCols();
 replaceClasses();
-addStylesheet();
 
 function trimCols()
 {
@@ -41,30 +40,66 @@ function trimCols()
 
 function replaceClasses()
 {
-  console.log("Replacing classes. ");
+  //Removes sorting classes on header, making it unclickable.
+  //console.log("Replacing classes. ");
   colhead=document.querySelectorAll(".sortable");
-  console.log(colhead);
+  //console.log(colhead);
   for (i = 0; i < colhead.length; i++)
   {
     colhead[i].classList.add('c-headers');
     colhead[i].classList.remove('sortable');
   }
-
+  //Removes default coloring classes and adds custom class.
   rows=document.querySelectorAll('[role="caseSummary"]');
   for (i = 0; i < rows.length; i++)
   {
     rows[i].classList.add('c-rows');
     rows[i].classList.remove('danger','info');
+    //Adds colors to the rows based on text.
+    //cells = rows[i];
+    //console.log(cells);
   }
+  cells=document.querySelectorAll('[role="caseSummary"] > td');
+  //console.log("Before "+cells);
+  var rowcount=0;
+  for (i = 0; i < cells.length; i++)
+  {
+    if (i != 0)
+    {
+      if (i%9==0)
+      {
+        rowcount++;
+      }
+    }
+
+    var multiplier = 0;
+    if (i==4*rowcount)
+    {
+      console.log(cells[i].innerText);
+        if (cells[i].innerText == "Waiting for response")
+        {
+          console.log("Found " + i);
+        }
+    }
+
+
+  }
+  /*
+  console.log(cells[4].innerText);
+  console.log("============");
+  console.log(cells[13].innerText);
+  console.log("============");
+  console.log(cells[22].innerText);
+  */
 }
 
+/*
 function addStylesheet()
 {
-  /*
   var style = document.createElement('link');
   style.rel = 'stylesheet';
   style.type = 'text/css';
   style.href = chrome.extension.getURL('content.css');
   (document.head||document.documentElement).appendChild(style);
-  */
 }
+*/
