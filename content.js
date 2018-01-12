@@ -1,10 +1,11 @@
 trimCols();
+replaceClasses();
 
 function trimCols()
 {
   //Get all relevant cells.
   cls=document.querySelectorAll('[role="caseSummary"] > td');
-  //0%0=0 and throws off the count, so make sure to watch for that. Worthy of comment because my math skills are not that great so it took me a while to catch that. 
+  //0%0=0 and throws off the count, so make sure to watch for that. Worthy of comment because my math skills are not that great so it took me a while to catch that.
   var rowcount = 0;
   for (i = 0; i < cls.length; i++)
   {
@@ -33,5 +34,19 @@ function trimCols()
     {
       colhead[i].parentNode.removeChild(colhead[i]);
     }
+
+  }
+}
+
+function replaceClasses()
+{
+  console.log("Replacing classes. ");
+  colhead=document.querySelectorAll(".sortable");
+  console.log(colhead);
+  for (i = 0; i < colhead.length; i++)
+  {
+    colhead[i].classList.add('myclass');
+    colhead[i].classList.remove('sortable');
+    console.log(i);
   }
 }
