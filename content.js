@@ -1,5 +1,6 @@
 trimCols();
 replaceClasses();
+addStylesheet();
 
 function trimCols()
 {
@@ -45,8 +46,25 @@ function replaceClasses()
   console.log(colhead);
   for (i = 0; i < colhead.length; i++)
   {
-    colhead[i].classList.add('myclass');
+    colhead[i].classList.add('c-headers');
     colhead[i].classList.remove('sortable');
-    console.log(i);
   }
+
+  rows=document.querySelectorAll('[role="caseSummary"]');
+  for (i = 0; i < rows.length; i++)
+  {
+    rows[i].classList.add('c-rows');
+    rows[i].classList.remove('danger','info');
+  }
+}
+
+function addStylesheet()
+{
+  /*
+  var style = document.createElement('link');
+  style.rel = 'stylesheet';
+  style.type = 'text/css';
+  style.href = chrome.extension.getURL('content.css');
+  (document.head||document.documentElement).appendChild(style);
+  */
 }

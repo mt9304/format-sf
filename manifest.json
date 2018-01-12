@@ -5,16 +5,11 @@
   "version" : "0.1",
   "content_scripts" : [
     {
-      "matches" : ["https://visier.my.salesforce.com/apex/Support/Tickets*"],
+      "matches" : [ "http://*/*", "https://*/*", "file:///*/*"],
       "css" : ["content.css"]
     }
   ],
-  "permissions": [
-    "tabs",
-    "background",
-    "http://*/*",
-    "https://*/*"
-],
+  "permissions": ["tabs", "background", "http://*/*", "https://*/*", "file:///*/*"],
   "background":
   {
     "scripts" : ["background.js"]
@@ -22,5 +17,6 @@
   "browser_action" :
   {
     "default_icon" : "icon.png"
-  }
+  },
+  "web_accessible_resources": ["content.css"]
 }
