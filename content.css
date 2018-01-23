@@ -22,3 +22,22 @@ tr.c-rows
 {
   font-weight: bold;
 }
+
+tr.c-rows.ta-danger:hover
+{
+  background-color: #FA5F5F;
+}
+
+tr.c-rows.ta-info:hover
+{
+  background-color: #469AF9;
+}
+
+tr.c-rows.ta-warning:hover
+{
+  background-color: #F9D646;
+}
+tr.c-rows.ta-new:hover
+{
+  background-color: #EFF0F0;
+}
