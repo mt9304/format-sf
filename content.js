@@ -73,15 +73,33 @@ function replaceClasses()
     }
 
     var multiplier = 0;
-    if (i==4*rowcount)
+    if (i==4 + rowcount*9)
     {
-      console.log(cells[i].innerText);
-        if (cells[i].innerText == "Waiting for response")
-        {
-          console.log("Found " + i);
-        }
-    }
+      //The text gotten form innerText contains a new line.
+      var currentStatus = cells[i].innerText.split("\n")[0];
+      //console.log(currentStatus);
+      if (currentStatus == "Customer Responded")
+      {
+        cells[i].closest('tr').className += " ta-danger";
+      }
+      if (currentStatus == "In Progress")
+      {
+        cells[i].closest('tr').className += " ta-danger";
+      }
+      if (currentStatus == "Waiting for response")
+      {
+        cells[i].closest('tr').className += " ta-info";
+      }
+      if (currentStatus == "Awaiting Fix")
+      {
+        cells[i].closest('tr').className += " ta-warning";
+      }
+      if (currentStatus == "New")
+      {
+        cells[i].closest('tr').className += " ta-new";
+      }
 
+    }
 
   }
   /*

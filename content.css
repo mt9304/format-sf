@@ -2,3 +2,23 @@ tr.c-rows
 {
   height: 50px !important;
 }
+.ta-danger
+{
+  background-color: #f2dede;
+  font-weight: bold;
+}
+
+.ta-info
+{
+  background-color: #d9edf7;
+}
+
+.ta-warning
+{
+  background-color: #fcf8e3;
+}
+
+.ta-new
+{
+  font-weight: bold;
+}
