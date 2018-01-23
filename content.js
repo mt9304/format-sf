@@ -1,10 +1,15 @@
-trimCols();
-replaceClasses();
-customSorting("Waiting for response");
-customSorting("Awaiting Fix");
-customSorting("In Progress");
-customSorting("Customer Responded");
-customSorting("New");
+headerCount=document.querySelectorAll('th');
+//Prevents the script form running multiple times. ""
+if (headerCount.length > 10)
+{
+  trimCols();
+  replaceClasses();
+  customSorting("Waiting for response");
+  customSorting("Awaiting Fix");
+  customSorting("In Progress");
+  customSorting("Customer Responded");
+  customSorting("New");
+}
 
 function trimCols()
 {
