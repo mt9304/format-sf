@@ -1,5 +1,10 @@
 trimCols();
 replaceClasses();
+customSorting("Waiting for response");
+customSorting("Awaiting Fix");
+customSorting("In Progress");
+customSorting("Customer Responded");
+customSorting("New");
 
 function trimCols()
 {
@@ -102,22 +107,30 @@ function replaceClasses()
     }
 
   }
-  /*
-  console.log(cells[4].innerText);
-  console.log("============");
-  console.log(cells[13].innerText);
-  console.log("============");
-  console.log(cells[22].innerText);
-  */
 }
 
-/*
-function addStylesheet()
+function customSorting(theStatus)
 {
-  var style = document.createElement('link');
-  style.rel = 'stylesheet';
-  style.type = 'text/css';
-  style.href = chrome.extension.getURL('content.css');
-  (document.head||document.documentElement).appendChild(style);
+  cells=document.querySelectorAll('[role="caseSummary"] > td');
+  var rowcount=0;
+  for (i = 0; i < cells.length; i++)
+  {
+    if (i != 0)
+    {
+      if (i%9==0)
+      {
+        rowcount++;
+      }
+    }
+
+    row = cells[i].closest('tbody');
+    if (i==4 + rowcount*9)
+    {
+      var currentStatus = cells[i].innerText.split("\n")[0];
+      if (currentStatus == theStatus)
+      {
+        row.parentNode.insertBefore(row, row.parentNode.firstChild);
+      }
+    }
+  }
 }
-*/
