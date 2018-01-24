@@ -1,6 +1,6 @@
 headerCount=document.querySelectorAll('th');
 //Prevents the script form running multiple times. ""
-if (headerCount.length > 10)
+if (headerCount.length > 10 && headerCount[5].innerText.split("\n")[0] == "TICKET #")
 {
   trimCols();
   replaceClasses();
