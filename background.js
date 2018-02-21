@@ -1,4 +1,4 @@
-/*
+
 chrome.browserAction.onClicked.addListener(function(activeTab)
 {
   var bkg = chrome.extension.getBackgroundPage();
@@ -14,8 +14,9 @@ chrome.browserAction.onClicked.addListener(function(activeTab)
   {
     file: "content.css"
   });
+  */
 });
-*/
+
 /*
 chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.storage.sync.get('state', function(data) {
