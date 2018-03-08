@@ -9,6 +9,7 @@ if (headerCount.length > 10 && headerCount[5].innerText.split("\n")[0] == "TICKE
   customSorting("In Progress");
   customSorting("Customer Responded");
   customSorting("New");
+  linkJiras();
 }
 
 function trimCols()
@@ -135,6 +136,33 @@ function customSorting(theStatus)
       if (currentStatus == theStatus)
       {
         row.parentNode.insertBefore(row, row.parentNode.firstChild);
+      }
+    }
+  }
+}
+
+function linkJiras()
+{
+  cells=document.querySelectorAll('[role="caseSummary"] > td');
+  var rowcount=0;
+  for (i = 0; i < cells.length; i++)
+  {
+    if (i != 0)
+    {
+      if (i%9==0)
+      {
+        rowcount++;
+      }
+    }
+
+    row = cells[i].closest('tbody');
+    if (i==7 + rowcount*9)
+    {
+      var jiraTask = cells[i].innerText.split("\n")[0];
+      if (jiraTask)
+      {
+        cells[i].innerHTML = "<a href=\"https://visiercorp.atlassian.net/browse/"+jiraTask+"\">"+jiraTask+"</a>";
+
       }
     }
   }
