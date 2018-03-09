@@ -1,4 +1,4 @@
-//Prevents the script form running multiple times. Checks to see if it is the default page. 
+//Prevents the script form running multiple times. Checks to see if it is the default page.
 defaultHeaders=document.querySelectorAll('th');
 if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == "TICKET #")
 {
@@ -6,14 +6,9 @@ if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == 
 	removeExtraColumnsFromTableHeaders();
 	removeExtraColumnsFromTable();
 	removeDefaultSortableHeaders();
-	removeDefaultSortableHeaders();
 	replaceDefaultColoring();
 	performActionOnColumn(4, colorRowsBasedOnTicketStatus);
-	performActionOnColumn(4, bringStatusToTop, "Waiting for response");
-	performActionOnColumn(4, bringStatusToTop, "Awaiting Fix");
-	performActionOnColumn(4, bringStatusToTop, "In Progress");
-	performActionOnColumn(4, bringStatusToTop, "Customer Responded");
-	performActionOnColumn(4, bringStatusToTop, "New");
+  sortTicketsByStatus();
 	performActionOnColumn(7, convertJiraNumbersToLinks);
 }
 
@@ -80,7 +75,7 @@ function replaceDefaultColoring()
 function colorRowsBasedOnTicketStatus(cell, cellText)
 {
 	var currentStatus = cellText;
-	//The text gotten from innerText contains a new line, so need to remove not include by splitting. 
+	//The text gotten from innerText contains a new line, so need to remove not include by splitting.
 	if (currentStatus == "Customer Responded")
 	{
 		cell.closest('tr').className += " ta-danger";
@@ -103,6 +98,17 @@ function colorRowsBasedOnTicketStatus(cell, cellText)
 	}
 }
 
+function sortTicketsByStatus()
+{
+  //Each of these will bring the status to the rows of tickets to the top of the page.
+  //Which ever comes first here will end up at the bottom of the ticket page.
+  performActionOnColumn(4, bringStatusToTop, "Waiting for response");
+  performActionOnColumn(4, bringStatusToTop, "Awaiting Fix");
+  performActionOnColumn(4, bringStatusToTop, "In Progress");
+  performActionOnColumn(4, bringStatusToTop, "Customer Responded");
+  performActionOnColumn(4, bringStatusToTop, "New");
+}
+
 function bringStatusToTop(cell, cellText, status)
 {
 	row = cell.closest('tbody');
@@ -117,7 +123,7 @@ function convertJiraNumbersToLinks(cell, cellText)
 	cell.innerHTML = "<a href=\"https://visiercorp.atlassian.net/browse/"+cellText+"\">"+cellText+"</a>";
 }
 
-//Remember to reuse the function below for colorRowsBasedOnTicketStatus(), bringStatusToTop(), and any future functions that require looping through cells to check for values. 
+//Remember to reuse the function below for colorRowsBasedOnTicketStatus(), bringStatusToTop(), and any future functions that require looping through cells to check for values.
 function performActionOnColumn(columnNumber, action, valueToUse)
 {
 
@@ -127,14 +133,14 @@ function performActionOnColumn(columnNumber, action, valueToUse)
 	{
 		if (i != 0)
 		{
-			//9th cell is the beginning of the next row. 
+			//9th cell is the beginning of the next row.
 			if (i%9==0)
 			{
 				rowcount++;
 			}
 		}
 
-		//For columNumber, columns from 0-8: 
+		//For columNumber, columns from 0-8:
 		//Arrow, Number, Ticket #, Subject, Status, Last Activity, Account, Jira #, Jira Status
 		//0		   1		 2		  3		  4		      5			  6		   7	     8
 		row = cells[i].closest('tbody');
