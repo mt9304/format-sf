@@ -2,7 +2,7 @@
 defaultHeaders=document.querySelectorAll('th');
 if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == "TICKET #")
 {
-	//*** Runs the actual scripts to format the page. ***
+	/* Runs the actual functions to format the page. */
 	removeExtraColumnsFromTableHeaders();
 	removeExtraColumnsFromTable();
 	removeDefaultSortableHeaders();
@@ -14,7 +14,7 @@ if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == 
 	bringStatusToTop("In Progress");
 	bringStatusToTop("Customer Responded");
 	bringStatusToTop("New");
-	convertJiraNumbersToLinks();
+	performActionOnColumn(7, convertJiraNumbersToLinks);
 }
 
 function removeExtraColumnsFromTableHeaders()
@@ -145,27 +145,38 @@ function bringStatusToTop(theStatus)
 	}
 }
 
-function convertJiraNumbersToLinks()
+function convertJiraNumbersToLinks(cell, cellText)
 {
+	cell.innerHTML = "<a href=\"https://visiercorp.atlassian.net/browse/"+cellText+"\">"+cellText+"</a>";
+}
+
+//Remember to reuse the function below for colorRowsBasedOnTicketStatus(), bringStatusToTop(), and any future functions that require looping through cells to check for values. 
+function performActionOnColumn(columnNumber, action)
+{
+
 	cells=document.querySelectorAll('[role="caseSummary"] > td');
 	var rowcount=0;
 	for (i = 0; i < cells.length; i++)
 	{
 		if (i != 0)
 		{
+			//9th cell is the beginning of the next row. 
 			if (i%9==0)
 			{
 				rowcount++;
 			}
 		}
 
+		//For columNumber, columns from 0-8: 
+		//Arrow, Number, Ticket #, Subject, Status, Last Activity, Account, Jira #, Jira Status
+		//0		   1		 2		  3		  4		      5			  6		   7	     8
 		row = cells[i].closest('tbody');
-		if (i==7 + rowcount*9)
+		if (i==columnNumber + rowcount*9)
 		{
-			var jiraTaskNumber = cells[i].innerText.split("\n")[0];
-			if (jiraTaskNumber)
+			var cellText = cells[i].innerText.split("\n")[0];
+			if (cellText)
 			{
-				cells[i].innerHTML = "<a href=\"https://visiercorp.atlassian.net/browse/"+jiraTaskNumber+"\">"+jiraTaskNumber+"</a>";
+				action(cells[i], cellText);
 			}
 		}
 	}
