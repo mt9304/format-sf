@@ -8,12 +8,12 @@ if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == 
 	removeDefaultSortableHeaders();
 	removeDefaultSortableHeaders();
 	replaceDefaultColoring();
-	colorRowsBasedOnTicketStatus();
-	bringStatusToTop("Waiting for response");
-	bringStatusToTop("Awaiting Fix");
-	bringStatusToTop("In Progress");
-	bringStatusToTop("Customer Responded");
-	bringStatusToTop("New");
+	performActionOnColumn(4, colorRowsBasedOnTicketStatus);
+	performActionOnColumn(4, bringStatusToTop, "Waiting for response");
+	performActionOnColumn(4, bringStatusToTop, "Awaiting Fix");
+	performActionOnColumn(4, bringStatusToTop, "In Progress");
+	performActionOnColumn(4, bringStatusToTop, "Customer Responded");
+	performActionOnColumn(4, bringStatusToTop, "New");
 	performActionOnColumn(7, convertJiraNumbersToLinks);
 }
 
@@ -77,71 +77,38 @@ function replaceDefaultColoring()
 	}
 }
 
-function colorRowsBasedOnTicketStatus()
+function colorRowsBasedOnTicketStatus(cell, cellText)
 {
-	cells=document.querySelectorAll('[role="caseSummary"] > td');
-	var rowcount=0;
-	for (i = 0; i < cells.length; i++)
+	var currentStatus = cellText;
+	//The text gotten from innerText contains a new line, so need to remove not include by splitting. 
+	if (currentStatus == "Customer Responded")
 	{
-		if (i != 0)
-		{
-			if (i%9==0)
-		  	{
-		    	rowcount++;
-		  	}
-		}
-
-		if (i==4 + rowcount*9)
-		{
-			//The text gotten from innerText contains a new line, so need to remove not include by splitting. 
-		  	var currentStatus = cells[i].innerText.split("\n")[0];
-			if (currentStatus == "Customer Responded")
-			{
-				cells[i].closest('tr').className += " ta-danger";
-			}
-			if (currentStatus == "In Progress")
-			{
-				cells[i].closest('tr').className += " ta-danger";
-			}
-			if (currentStatus == "Waiting for response")
-			{
-				cells[i].closest('tr').className += " ta-info";
-			}
-			if (currentStatus == "Awaiting Fix")
-			{
-				cells[i].closest('tr').className += " ta-warning";
-			}
-			if (currentStatus == "New")
-			{
-				cells[i].closest('tr').className += " ta-new";
-			}
-		}
+		cell.closest('tr').className += " ta-danger";
+	}
+	if (currentStatus == "In Progress")
+	{
+		cell.closest('tr').className += " ta-danger";
+	}
+	if (currentStatus == "Waiting for response")
+	{
+		cell.closest('tr').className += " ta-info";
+	}
+	if (currentStatus == "Awaiting Fix")
+	{
+		cell.closest('tr').className += " ta-warning";
+	}
+	if (currentStatus == "New")
+	{
+		cell.closest('tr').className += " ta-new";
 	}
 }
 
-function bringStatusToTop(theStatus)
+function bringStatusToTop(cell, cellText, status)
 {
-	cells=document.querySelectorAll('[role="caseSummary"] > td');
-	var rowcount=0;
-	for (i = 0; i < cells.length; i++)
+	row = cell.closest('tbody');
+	if (cellText == status)
 	{
-		if (i != 0)
-		{
-		 	if (i%9==0)
-			{
-				rowcount++;
-			}
-		}
-
-		row = cells[i].closest('tbody');
-		if (i==4 + rowcount*9)
-		{
-			var currentStatus = cells[i].innerText.split("\n")[0];
-			if (currentStatus == theStatus)
-			{
-				row.parentNode.insertBefore(row, row.parentNode.firstChild);
-			}
-		}
+		row.parentNode.insertBefore(row, row.parentNode.firstChild);
 	}
 }
 
@@ -151,7 +118,7 @@ function convertJiraNumbersToLinks(cell, cellText)
 }
 
 //Remember to reuse the function below for colorRowsBasedOnTicketStatus(), bringStatusToTop(), and any future functions that require looping through cells to check for values. 
-function performActionOnColumn(columnNumber, action)
+function performActionOnColumn(columnNumber, action, valueToUse)
 {
 
 	cells=document.querySelectorAll('[role="caseSummary"] > td');
@@ -176,7 +143,7 @@ function performActionOnColumn(columnNumber, action)
 			var cellText = cells[i].innerText.split("\n")[0];
 			if (cellText)
 			{
-				action(cells[i], cellText);
+				action(cells[i], cellText, valueToUse);
 			}
 		}
 	}
