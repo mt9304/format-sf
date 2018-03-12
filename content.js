@@ -10,6 +10,7 @@ if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == 
 	performActionOnColumn(4, colorRowsBasedOnTicketStatus);
   sortTicketsByStatus();
 	performActionOnColumn(7, convertJiraNumbersToLinks);
+  performActionOnColumn(8, colorJiraStatuses)
 }
 
 function removeExtraColumnsFromTableHeaders()
@@ -75,7 +76,6 @@ function replaceDefaultColoring()
 function colorRowsBasedOnTicketStatus(cell, cellText)
 {
 	var currentStatus = cellText;
-	//The text gotten from innerText contains a new line, so need to remove not include by splitting.
 	if (currentStatus == "Customer Responded")
 	{
 		cell.closest('tr').className += " ta-danger";
@@ -96,12 +96,17 @@ function colorRowsBasedOnTicketStatus(cell, cellText)
 	{
 		cell.closest('tr').className += " ta-new";
 	}
+  if (currentStatus == "Escalated to Dev")
+  {
+    cell.closest('tr').className += " ta-escalated";
+  }
 }
 
 function sortTicketsByStatus()
 {
   //Each of these will bring the status to the rows of tickets to the top of the page.
   //Which ever comes first here will end up at the bottom of the ticket page.
+  performActionOnColumn(4, bringStatusToTop, "Escalated to Dev");
   performActionOnColumn(4, bringStatusToTop, "Waiting for response");
   performActionOnColumn(4, bringStatusToTop, "Awaiting Fix");
   performActionOnColumn(4, bringStatusToTop, "In Progress");
@@ -146,6 +151,7 @@ function performActionOnColumn(columnNumber, action, valueToUse)
 		row = cells[i].closest('tbody');
 		if (i==columnNumber + rowcount*9)
 		{
+      //The text gotten from innerText contains a new line, so need to remove not include by splitting.
 			var cellText = cells[i].innerText.split("\n")[0];
 			if (cellText)
 			{
@@ -153,4 +159,29 @@ function performActionOnColumn(columnNumber, action, valueToUse)
 			}
 		}
 	}
+}
+
+//Colors the Jira statuses based on their value to attract attention on higher priority tasks.
+function colorJiraStatuses(cell, cellText)
+{
+  if (cellText == "CS Validating")
+  {
+    cell.children[1].children[0].className += " ta-cs-validating";
+  }
+  if (cellText == "Waiting for Customer")
+  {
+    cell.children[1].children[0].className += " ta-waiting-for-customer";
+  }
+  if (cellText == "Wait For Requirements")
+  {
+    cell.children[1].children[0].className += " ta-wait-for-requirements";
+  }
+  if (cellText == "Done")
+  {
+    cell.children[1].children[0].className += " ta-done";
+  }
+  if (cellText == "Customer Validating")
+  {
+    cell.children[1].children[0].className += " ta-customer-validating";
+  }
 }
