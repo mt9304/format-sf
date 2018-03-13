@@ -100,6 +100,14 @@ function colorRowsBasedOnTicketStatus(cell, cellText)
   {
     cell.closest('tr').className += " ta-escalated";
   }
+  if (currentStatus == "Customer Approved")
+  {
+    cell.closest('tr').className += " ta-customer-approved";
+  }
+  if (currentStatus == "Reopened")
+  {
+    cell.closest('tr').className += " ta-reopened";
+  }
 }
 
 function sortTicketsByStatus()
@@ -112,6 +120,8 @@ function sortTicketsByStatus()
   performActionOnColumn(4, bringStatusToTop, "In Progress");
   performActionOnColumn(4, bringStatusToTop, "Customer Responded");
   performActionOnColumn(4, bringStatusToTop, "New");
+  performActionOnColumn(4, bringStatusToTop, "Reopened");
+  performActionOnColumn(4, bringStatusToTop, "Customer Approved");
 }
 
 function bringStatusToTop(cell, cellText, status)

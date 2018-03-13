@@ -28,6 +28,18 @@ tr.c-rows
   background-color: #BBA3D0;
 }
 
+.ta-customer-approved
+{
+  background-color: #ccffcc;
+  font-weight: bold;
+}
+
+.ta-reopened
+{
+  background-color: #ffdb99;
+  font-weight: bold;
+}
+
 tr.c-rows.ta-danger:hover
 {
   background-color: #FF7F7F;
@@ -51,6 +63,16 @@ tr.c-rows.ta-new:hover
 tr.c-rows.ta-escalated:hover
 {
   background-color: #885EAD;
+}
+
+tr.c-rows.ta-customer-approved:hover
+{
+  background-color: #00cc00;
+}
+
+tr.c-rows.ta-reopened:hover
+{
+  background-color: #ffa500;
 }
 
 .ta-cs-validating
