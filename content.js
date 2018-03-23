@@ -114,6 +114,7 @@ function sortTicketsByStatus()
 {
   //Each of these will bring the status to the rows of tickets to the top of the page.
   //Which ever comes first here will end up at the bottom of the ticket page.
+	//performActionOnColumn(4, bringStatusToTop, "Awaiting Customer Approval");
   performActionOnColumn(4, bringStatusToTop, "Escalated to Dev");
   performActionOnColumn(4, bringStatusToTop, "Waiting for response");
   performActionOnColumn(4, bringStatusToTop, "Awaiting Fix");
