@@ -84,10 +84,15 @@ function getPageHTMLWithAjax()
     var rawHTML = "test";
     xhr.onload = function() 
     {
-		rawHTML = xhr.responseText;
-		return rawHTML;
+		returnString(xhr.responseText);
     }
     xhr.send();
 }
 
 console.log(getPageHTMLWithAjax);
+
+
+function returnString(string)
+{
+	return string;
+}
