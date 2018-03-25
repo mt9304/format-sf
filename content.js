@@ -8,9 +8,9 @@ if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == 
 	removeDefaultSortableHeaders();
 	replaceDefaultColoring();
 	performActionOnColumn(4, colorRowsBasedOnTicketStatus);
-  sortTicketsByStatus();
+  	sortTicketsByStatus();
 	performActionOnColumn(7, convertJiraNumbersToLinks);
-  performActionOnColumn(8, colorJiraStatuses)
+  	performActionOnColumn(8, colorJiraStatuses);
 }
 
 function removeExtraColumnsFromTableHeaders()
@@ -84,6 +84,10 @@ function colorRowsBasedOnTicketStatus(cell, cellText)
 	{
 		cell.closest('tr').className += " ta-danger";
 	}
+	if (currentStatus == "Awaiting Customer Approval")
+	{
+		cell.closest('tr').className += " ta-info";
+	}
 	if (currentStatus == "Waiting for response")
 	{
 		cell.closest('tr').className += " ta-info";
@@ -96,18 +100,18 @@ function colorRowsBasedOnTicketStatus(cell, cellText)
 	{
 		cell.closest('tr').className += " ta-new";
 	}
-  if (currentStatus == "Escalated to Dev")
-  {
-    cell.closest('tr').className += " ta-escalated";
-  }
-  if (currentStatus == "Customer Approved")
-  {
-    cell.closest('tr').className += " ta-customer-approved";
-  }
-  if (currentStatus == "Reopened")
-  {
-    cell.closest('tr').className += " ta-reopened";
-  }
+	if (currentStatus == "Escalated to Dev")
+	{
+	cell.closest('tr').className += " ta-escalated";
+	}
+	if (currentStatus == "Customer Approved")
+	{
+	cell.closest('tr').className += " ta-customer-approved";
+	}
+	if (currentStatus == "Reopened")
+	{
+	cell.closest('tr').className += " ta-reopened";
+	}
 }
 
 function sortTicketsByStatus()
@@ -116,13 +120,14 @@ function sortTicketsByStatus()
   //Which ever comes first here will end up at the bottom of the ticket page.
 	//performActionOnColumn(4, bringStatusToTop, "Awaiting Customer Approval");
   performActionOnColumn(4, bringStatusToTop, "Escalated to Dev");
+  performActionOnColumn(4, bringStatusToTop, "Awaiting Customer Approval");
   performActionOnColumn(4, bringStatusToTop, "Waiting for response");
   performActionOnColumn(4, bringStatusToTop, "Awaiting Fix");
   performActionOnColumn(4, bringStatusToTop, "In Progress");
   performActionOnColumn(4, bringStatusToTop, "Customer Responded");
-  performActionOnColumn(4, bringStatusToTop, "New");
   performActionOnColumn(4, bringStatusToTop, "Reopened");
   performActionOnColumn(4, bringStatusToTop, "Customer Approved");
+  performActionOnColumn(4, bringStatusToTop, "New");
 }
 
 function bringStatusToTop(cell, cellText, status)
@@ -139,6 +144,33 @@ function convertJiraNumbersToLinks(cell, cellText)
 	cell.innerHTML = "<a href=\"https://visiercorp.atlassian.net/browse/"+cellText+"\">"+cellText+"</a>";
 }
 
+//Colors the Jira statuses based on their value to attract attention on higher priority tasks.
+function colorJiraStatuses(cell, cellText)
+{
+  if (cellText == "CS Validating")
+  {
+    cell.children[1].children[0].className += " ta-cs-validating";
+  }
+  if (cellText == "Waiting for Customer")
+  {
+    cell.children[1].children[0].className += " ta-waiting-for-customer";
+  }
+  if (cellText == "Wait For Requirements")
+  {
+    cell.children[1].children[0].className += " ta-wait-for-requirements";
+  }
+  if (cellText == "Done")
+  {
+    cell.children[1].children[0].className += " ta-done";
+  }
+  //First childen is [0] because For some reason, this status doesn't have a first child like the rest. Might be configured in SF, so out of our control. 
+  if (cellText == "Customer Validating")
+  {
+    cell.children[0].children[0].className += " ta-customer-validating";
+  }
+}
+
+/** Will change this in future so that it only loops once while checking a collection of functions, instead of repeating loops everytime I want to run a function. However, I still need to work on a few other core functions first.  **/
 //Remember to reuse the function below for colorRowsBasedOnTicketStatus(), bringStatusToTop(), and any future functions that require looping through cells to check for values.
 function performActionOnColumn(columnNumber, action, valueToUse)
 {
@@ -170,29 +202,4 @@ function performActionOnColumn(columnNumber, action, valueToUse)
 			}
 		}
 	}
-}
-
-//Colors the Jira statuses based on their value to attract attention on higher priority tasks.
-function colorJiraStatuses(cell, cellText)
-{
-  if (cellText == "CS Validating")
-  {
-    cell.children[1].children[0].className += " ta-cs-validating";
-  }
-  if (cellText == "Waiting for Customer")
-  {
-    cell.children[1].children[0].className += " ta-waiting-for-customer";
-  }
-  if (cellText == "Wait For Requirements")
-  {
-    cell.children[1].children[0].className += " ta-wait-for-requirements";
-  }
-  if (cellText == "Done")
-  {
-    cell.children[1].children[0].className += " ta-done";
-  }
-  if (cellText == "Customer Validating")
-  {
-    cell.children[1].children[0].className += " ta-customer-validating";
-  }
 }
