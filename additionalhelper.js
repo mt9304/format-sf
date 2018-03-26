@@ -1,3 +1,5 @@
+/* To look into later if I want to get podnums from accounts page. */
+
 x-grid3-cell-inner x-grid3-col-ACCOUNT_NAME
 x-grid3-cell-inner x-grid3-col-ACCOUNT_NAME
 
@@ -13,7 +15,7 @@ function getAccountLinkFromCurrentAccountPage()
 	var searchText = "KeyCorp";
 	var found;
 
-	for (var i = 0; i < accountCells.length; i++) 
+	for (var i = 0; i < accountCells.length; i++)
 	{
 		if (accountCells[i].textContent == searchText)
 		{
@@ -27,7 +29,7 @@ function getAccountLinkFromCurrentAccountPage()
 function parseRawHTMLToDocumentObject(rawHTML)
 {
 	var xmlString = rawHTML, parser = new DOMParser(), doc = parser.parseFromString(xmlString, "text/xml");
-	/* 
+	/*
 	var markup = '<div><p>text here</p></div>';
 	var parser = new DOMParser()
 	var el = parser.parseFromString(markup, "text/xml");
@@ -49,7 +51,7 @@ function getPageHTMLWithAjax(url)
 	url = currentAccountsURL;
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", url, true);
-	xhr.onreadystatechange = function() 
+	xhr.onreadystatechange = function()
 	{
 		if (xhr.readyState == 4)
 		{
@@ -64,7 +66,7 @@ function getPageHTMLWithAjax(url)
     url = currentAccountsURL;
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
-    xhr.onreadystatechange = function() 
+    xhr.onreadystatechange = function()
     {
    		if (xhr.readyState == 4)
     	{
@@ -82,7 +84,7 @@ function getPageHTMLWithAjax()
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     var rawHTML = "test";
-    xhr.onload = function() 
+    xhr.onload = function()
     {
 		returnString(xhr.responseText);
     }
