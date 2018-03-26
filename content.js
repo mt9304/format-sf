@@ -8,9 +8,10 @@ if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == 
 	removeDefaultSortableHeaders();
 	replaceDefaultColoring();
 	performActionOnColumn(4, colorRowsBasedOnTicketStatus);
-  	sortTicketsByStatus();
+  sortTicketsByStatus();
 	performActionOnColumn(7, convertJiraNumbersToLinks);
-  	performActionOnColumn(8, colorJiraStatuses);
+  performActionOnColumn(8, colorJiraStatuses);
+	testthisfunction();
 }
 
 function removeExtraColumnsFromTableHeaders()
@@ -163,7 +164,7 @@ function colorJiraStatuses(cell, cellText)
   {
     cell.children[1].children[0].className += " ta-done";
   }
-  //First childen is [0] because For some reason, this status doesn't have a first child like the rest. Might be configured in SF, so out of our control. 
+  //First childen is [0] because For some reason, this status doesn't have a first child like the rest. Might be configured in SF, so out of our control.
   if (cellText == "Customer Validating")
   {
     cell.children[0].children[0].className += " ta-customer-validating";

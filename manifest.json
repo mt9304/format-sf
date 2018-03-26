@@ -12,7 +12,7 @@
   "permissions": ["tabs", "background", "http://*/*", "https://*/*", "file:///*/*"],
   "background":
   {
-    "scripts" : ["background.js"]
+    "scripts" : ["background.js","test.js"]
   },
   "browser_action" :
   {
