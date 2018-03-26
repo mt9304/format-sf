@@ -5,13 +5,13 @@ if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == 
 	/* Runs the actual functions to format the page. */
 	removeExtraColumnsFromTableHeaders();
 	removeExtraColumnsFromTable();
-	removeDefaultSortableHeaders();
+	replaceDefaultSortableHeaders();
+	//makeTablesSortable(); 
 	replaceDefaultColoring();
 	performActionOnColumn(4, colorRowsBasedOnTicketStatus);
   sortTicketsByStatus();
 	performActionOnColumn(7, convertJiraNumbersToLinks);
   performActionOnColumn(8, colorJiraStatuses);
-	testthisfunction();
 }
 
 function removeExtraColumnsFromTableHeaders()
@@ -52,7 +52,7 @@ function removeExtraColumnsFromTable()
 	}
 }
 
-function removeDefaultSortableHeaders()
+function replaceDefaultSortableHeaders()
 {
 	//Removes sorting classes on header, making it unclickable.
 	sortableHeaders=document.querySelectorAll(".sortable");
@@ -60,6 +60,16 @@ function removeDefaultSortableHeaders()
 	{
 		sortableHeaders[i].classList.add('c-headers');
 		sortableHeaders[i].classList.remove('sortable');
+	}
+}
+
+function makeTablesSortable()
+{
+	//Adds class of ta-sortable for the sorttable.js to make it sortable.
+	sortableHeaders=document.querySelectorAll(".table");
+	for (i = 0; i < sortableHeaders.length; i++)
+	{
+		sortableHeaders[i].classList.add('ta-sortable');
 	}
 }
 

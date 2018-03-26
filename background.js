@@ -5,7 +5,7 @@ chrome.browserAction.onClicked.addListener(function(activeTab)
   bkg.console.log('Icon clicked');
   //Executes the scripts to interact with DOM, since this file cannot.
   var scripts = [
-    'test.js',
+    //'sorttable.js',
     'content.js'
   ];
   scripts.forEach(function(script)
@@ -44,7 +44,7 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab)
   if (changeInfo.status == 'complete')
   {
     var scripts = [
-      'test.js',
+      //'sorttable.js',
       'content.js'
     ];
     scripts.forEach(function(script)
