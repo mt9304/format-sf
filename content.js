@@ -6,12 +6,14 @@ if (defaultHeaders.length > 10 && defaultHeaders[5].innerText.split("\n")[0] == 
 	removeExtraColumnsFromTableHeaders();
 	removeExtraColumnsFromTable();
 	replaceDefaultSortableHeaders();
-	//makeTablesSortable(); 
+	//makeTablesSortable();
 	replaceDefaultColoring();
 	performActionOnColumn(4, colorRowsBasedOnTicketStatus);
   sortTicketsByStatus();
 	performActionOnColumn(7, convertJiraNumbersToLinks);
   performActionOnColumn(8, colorJiraStatuses);
+	performActionOnColumn(1, reNumberColumnValues);
+
 }
 
 function removeExtraColumnsFromTableHeaders()
@@ -181,6 +183,11 @@ function colorJiraStatuses(cell, cellText)
   }
 }
 
+function reNumberColumnValues(cell, cellText, valueToUse, rowcount)
+{
+	cell.innerHTML = rowcount+1;
+}
+
 /** Will change this in future so that it only loops once while checking a collection of functions, instead of repeating loops everytime I want to run a function. However, I still need to work on a few other core functions first.  **/
 //Remember to reuse the function below for colorRowsBasedOnTicketStatus(), bringStatusToTop(), and any future functions that require looping through cells to check for values.
 function performActionOnColumn(columnNumber, action, valueToUse)
@@ -209,7 +216,7 @@ function performActionOnColumn(columnNumber, action, valueToUse)
 			var cellText = cells[i].innerText.split("\n")[0];
 			if (cellText)
 			{
-				action(cells[i], cellText, valueToUse);
+				action(cells[i], cellText, valueToUse, rowcount);
 			}
 		}
 	}
