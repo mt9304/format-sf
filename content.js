@@ -179,7 +179,7 @@ function colorJiraStatuses(cell, cellText)
   //First childen is [0] because For some reason, this status doesn't have a first child like the rest. Might be configured in SF, so out of our control.
   if (cellText == "Customer Validating")
   {
-    cell.children[0].children[0].className += " ta-customer-validating";
+			cell.children[0].children[0].className += " ta-customer-validating";
   }
 }
 
