@@ -162,7 +162,14 @@ function colorJiraStatuses(cell, cellText)
 {
   if (cellText == "CS Validating")
   {
-    cell.children[1].children[0].className += " ta-cs-validating";
+		if (cell.children[1])
+		{
+			cell.children[1].children[0].className += " ta-cs-validating";
+		}
+		else if (cell.children[0].children[0])
+		{
+			cell.children[0].children[0].className += " ta-cs-validating";
+		}
   }
   if (cellText == "Waiting for Customer")
   {
