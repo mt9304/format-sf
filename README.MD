@@ -2,7 +2,7 @@
 
 - [Introduction](#introduction)
 - [Installation](#installation)
-- [How To Use](#how-to-use)
+- [After Installing](#after-installing)
 	- [Before And After Pictures](#before-and-after)
 
 ## Introduction
@@ -30,7 +30,7 @@ This Chrome addon was created to format a task managing system that was hard to 
 
 
 
-## How To Use
+## After Installing
 
 ### Instructions
 
