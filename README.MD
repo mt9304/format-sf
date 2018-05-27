@@ -11,7 +11,9 @@ This Chrome addon was created to format a task managing system that was hard to 
 - Trims out the columns that are not used by the team. 
 - Makes JIRA numbers hyperlinks for direct access. 
 - Orders the tasks by a custom order, with highest priority at the top. 
-- Color the task rows by its status to distinguish tasks easier. 
+- Highlights task status if action needed. 
+- Color the task rows by its status to distinguish types tasks easier. 
+
 
 
 ## Installation
