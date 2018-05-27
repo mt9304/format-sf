@@ -20,7 +20,7 @@ This Chrome addon was created to format a task managing system that was hard to 
 
 ### Instructions
 
-1. Download the folder from the Releases section. 
+1. Download the Source Code (zip) from the Releases section and extract the folder onto your computer. 
 
 2. Open up Google Chrome and type into the address bar without quotes: "chrome://extensions"
 
