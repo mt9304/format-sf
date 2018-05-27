@@ -3,11 +3,11 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [How To Use](#how-to-use)
-	- [Before And After Pictures](before-and-after)
+	- [Before And After Pictures](#before-and-after)
 
 ## Introduction
 
-This Chrome addon was created to format a task managing system that was hard to read/manage. This addon does the following: 
+This Chrome addon was created to format a task managing system that was hard to read/manage. The addon only works on Google Chrome. This addon does the following: 
 - Trims out the columns that are not used by the team. 
 - Makes JIRA numbers hyperlinks for direct access. 
 - Orders the tasks by a custom order, with highest priority at the top. 
@@ -37,6 +37,10 @@ This Chrome addon was created to format a task managing system that was hard to 
 2. The page will only be formatted if you are focussed on it. If oyu want to ad-hoc format, you can press the extension's icon at the top. 
 
 ### Before And After
-- The text on these were edited for privacy concerns. 
+The text on these were edited for privacy concerns. 
+
+- Before
 ![Before](https://github.com/mt9304/format-sf/blob/master/res/before.png)
+
+- After
 ![After](https://github.com/mt9304/format-sf/blob/master/res/after.png)
