@@ -113,6 +113,10 @@ function colorRowsBasedOnTicketStatus(cell, cellText)
 	{
 		cell.closest('tr').className += " ta-new";
 	}
+	if (currentStatus == "On Hold")
+	{
+		cell.closest('tr').className += " ta-onhold";
+	}
 	if (currentStatus == "Escalated to Dev")
 	{
 	cell.closest('tr').className += " ta-escalated";
@@ -120,6 +124,10 @@ function colorRowsBasedOnTicketStatus(cell, cellText)
 	if (currentStatus == "Customer Approved")
 	{
 	cell.closest('tr').className += " ta-customer-approved";
+	}
+	if (currentStatus == "Customer Rejected")
+	{
+	cell.closest('tr').className += " ta-customer-rejected";
 	}
 	if (currentStatus == "Reopened")
 	{
@@ -132,6 +140,7 @@ function sortTicketsByStatus()
   //Each of these will bring the status to the rows of tickets to the top of the page.
   //Which ever comes first here will end up at the bottom of the ticket page.
 	//performActionOnColumn(4, bringStatusToTop, "Awaiting Customer Approval");
+	performActionOnColumn(4, bringStatusToTop, "On Hold");
   performActionOnColumn(4, bringStatusToTop, "Escalated to Dev");
   performActionOnColumn(4, bringStatusToTop, "Awaiting Customer Approval");
   performActionOnColumn(4, bringStatusToTop, "Waiting for response");
@@ -140,6 +149,7 @@ function sortTicketsByStatus()
   performActionOnColumn(4, bringStatusToTop, "Customer Responded");
   performActionOnColumn(4, bringStatusToTop, "Reopened");
   performActionOnColumn(4, bringStatusToTop, "Customer Approved");
+	performActionOnColumn(4, bringStatusToTop, "Customer Rejected");
   performActionOnColumn(4, bringStatusToTop, "New");
 }
 
@@ -173,15 +183,36 @@ function colorJiraStatuses(cell, cellText)
   }
   if (cellText == "Waiting for Customer")
   {
-    cell.children[1].children[0].className += " ta-waiting-for-customer";
+		if (cell.children[1])
+		{
+			cell.children[1].children[0].className += " ta-waiting-for-customer";
+		}
+		else if (cell.children[0].children[0])
+		{
+			cell.children[0].children[0].className += " ta-waiting-for-customer";
+		}
   }
   if (cellText == "Wait For Requirements")
   {
-    cell.children[1].children[0].className += " ta-wait-for-requirements";
+		if (cell.children[1])
+		{
+			cell.children[1].children[0].className += " ta-wait-for-requirements";
+		}
+		else if (cell.children[0].children[0])
+		{
+			cell.children[0].children[0].className += " ta-wait-for-requirements";
+		}
   }
   if (cellText == "Done")
   {
-    cell.children[1].children[0].className += " ta-done";
+		if (cell.children[1])
+		{
+			cell.children[1].children[0].className += " ta-done";
+		}
+		else if (cell.children[0].children[0])
+		{
+			cell.children[0].children[0].className += " ta-done";
+		}
   }
   //First childen is [0] because For some reason, this status doesn't have a first child like the rest. Might be configured in SF, so out of our control.
   if (cellText == "Customer Validating")

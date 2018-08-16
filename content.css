@@ -34,6 +34,18 @@ tr.c-rows
   font-weight: bold;
 }
 
+.ta-customer-rejected
+{
+  background-color: #FF7F7F;
+  font-weight: bold;
+}
+
+.ta-onhold
+{
+  background-color: #B8B8B8;
+  font-weight: bold;
+}
+
 .ta-reopened
 {
   background-color: #ffdb99;
@@ -73,6 +85,16 @@ tr.c-rows.ta-customer-approved:hover
 tr.c-rows.ta-reopened:hover
 {
   background-color: #ffa500;
+}
+
+tr.c-rows.ta-rejected:hover
+{
+  background-color: #f2dede;
+}
+
+tr.c-rows.ta-onhold:hover
+{
+  background-color: #B8B8B8;
 }
 
 .ta-cs-validating
