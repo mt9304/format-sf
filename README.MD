@@ -12,7 +12,7 @@ This Chrome addon was created to format a task managing system that was hard to 
 - Makes JIRA numbers hyperlinks for direct access. 
 - Orders the tasks by a custom order, with highest priority at the top. 
 - Highlights task status if action needed. 
-- Color the task rows by its status to distinguish types tasks easier. 
+- Color the task rows by its status to distinguish different types of tasks easier. 
 
 
 
@@ -22,7 +22,7 @@ This Chrome addon was created to format a task managing system that was hard to 
 
 1. Download the Source Code (zip) from the Releases section and extract the folder onto your computer. 
 
-2. Open up Google Chrome and type into the address bar without quotes: "chrome://extensions"
+2. Open up Google Chrome and type into the address bar (without quotes): "chrome://extensions"
 
 3. Drag the folder into the extension's window. The extension should show up on the page now. 
 
@@ -36,10 +36,10 @@ This Chrome addon was created to format a task managing system that was hard to 
 
 1. Once installed and enabled in the browser, just browse to the ticket managing site and it should automatically format the page. 
 
-2. The page will only be formatted if you are focussed on it. If oyu want to ad-hoc format, you can press the extension's icon at the top. 
+2. The page will only be formatted if it is the active/focussed page in the browser. If you want to manually format, you can press the extension's icon at the top. 
 
 ### Before And After
-The text on these were edited for privacy concerns. 
+The text content on these screenshots were modified. 
 
 - Before
 ![Before](https://github.com/mt9304/format-sf/blob/master/res/before.png)
