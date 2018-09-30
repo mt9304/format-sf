@@ -39,7 +39,7 @@ This Chrome addon was created to format a task managing system that was hard to 
 2. The page will only be formatted if it is the active/focussed page in the browser. If you want to manually format, you can press the extension's icon at the top. 
 
 ### Before And After
-The text content on these screenshots were modified. 
+Note: The text content on these screenshots were modified. 
 
 - Before
 ![Before](https://github.com/mt9304/format-sf/blob/master/res/before.png)
