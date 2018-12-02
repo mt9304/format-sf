@@ -5,15 +5,13 @@ chrome.browserAction.onClicked.addListener(function(activeTab)
   bkg.console.log('Icon clicked');
   //Executes the scripts to interact with DOM, since this file cannot.
   var scripts = [
-    //'sorttable.js',
-    'content.js'
+    'formatCases.js'
   ];
   scripts.forEach(function(script)
   {
     chrome.tabs.executeScript(null, { file: script }, function(resp)
     {
-      if (script!=='content.js') return;
-      // Your callback code here
+      if (script!=='formatCases.js') return;
     });
   });
 
@@ -44,15 +42,19 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab)
   if (changeInfo.status == 'complete')
   {
     var scripts = [
-      //'sorttable.js',
-      'content.js'
+      'formatCases.js', 
+      'accountHoverAddon.js'
     ];
     scripts.forEach(function(script)
     {
       chrome.tabs.executeScript(null, { file: script }, function(resp)
       {
-        if (script!=='content.js') return;
-        // Your callback code here
+        if (script!=='formatCases.js') return;
+      });
+
+      chrome.tabs.executeScript(tabId, { file: script }, function(resp)
+      {
+        if (script!=='accountHoverAddon.js') return;
       });
     });
   }

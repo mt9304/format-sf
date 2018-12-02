@@ -9,7 +9,7 @@
       "css" : ["content.css"]
     }
   ],
-  "permissions": ["tabs", "background", "http://*/*", "https://*/*", "file:///*/*"],
+  "permissions": ["tabs", "webNavigation", "background", "http://*.salesforce.com/*", "https://*.salesforce.com/*", "http://*/*", "https://*/*", "file:///*/*"],
   "background":
   {
     "scripts" : ["background.js"]
