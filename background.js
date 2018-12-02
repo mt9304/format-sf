@@ -1,4 +1,4 @@
-
+//Listener for clicking icon/button on browser. 
 chrome.browserAction.onClicked.addListener(function(activeTab)
 {
   var bkg = chrome.extension.getBackgroundPage();
@@ -14,29 +14,9 @@ chrome.browserAction.onClicked.addListener(function(activeTab)
       if (script!=='formatCases.js') return;
     });
   });
-
-  /*
-  chrome.tabs.insertCSS(tab.id,
-  {
-    file: "content.css"
-  });
-  */
 });
 
-/*
-chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.storage.sync.get('state', function(data) {
-    if (data.state === 'on') {
-      chrome.storage.sync.set({state: 'off'});
-      //do something, removing the script or whatever
-    } else {
-      chrome.storage.sync.set({state: 'on'});
-      //inject your script
-    }
-  });
-});
-*/
-
+//Scripts here will always be loaded and ran when the page updates. 
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab)
 {
   if (changeInfo.status == 'complete')

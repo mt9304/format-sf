@@ -1,5 +1,13 @@
+/** ************************************************** **/
+/** START: Main logic for what happens when page loads **/
+/** ************************************************** **/
+
 addClassToAccountLink();
 actionWhenHoveringClass(insertTableAfterPopupLoads, "ta-hover-load");
+
+/** ************************************************ **/
+/** END: Main logic for what happens when page loads **/
+/** ************************************************ **/
 
 /** *********************************** **/
 /** START: Setting Up And Checking Page **/
@@ -168,13 +176,10 @@ function getDocAndInsertData(accountURL) {
 		insertDataCellsFromDocument(accountTicketDocument);
 	});
 
-	//console.log(accountTicketDocument);
-
 	var rowData = {
 		ticketUrl1: "ticketurl 1", 
 		supportTicket: "0561561"
 	}
-	//console.log(ticketTableElement.toString());
 	return rowData;
 }
 
