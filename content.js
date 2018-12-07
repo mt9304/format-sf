@@ -125,6 +125,10 @@ function colorRowsBasedOnTicketStatus(cell, cellText)
 	{
 	cell.closest('tr').className += " ta-customer-approved";
 	}
+	if (currentStatus == "Customer to Validate")
+	{
+	cell.closest('tr').className += " ta-info";
+	}
 	if (currentStatus == "Customer Rejected")
 	{
 	cell.closest('tr').className += " ta-customer-rejected";
@@ -147,6 +151,7 @@ function sortTicketsByStatus()
 	performActionOnColumn(4, bringStatusToTop, "On Hold");
   performActionOnColumn(4, bringStatusToTop, "Escalated to Dev");
   performActionOnColumn(4, bringStatusToTop, "Awaiting Customer Approval");
+	performActionOnColumn(4, bringStatusToTop, "Customer to Validate");
   performActionOnColumn(4, bringStatusToTop, "Waiting for response");
   performActionOnColumn(4, bringStatusToTop, "Awaiting Fix");
   performActionOnColumn(4, bringStatusToTop, "In Progress");
